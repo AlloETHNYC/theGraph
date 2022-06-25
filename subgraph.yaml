@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CompanyFactory
+    network: mumbai
+    source:
+      address: "0x018ae9882921bfffb7fef8f27e8dfc6b4053f0b0"
+      abi: CompanyFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - newCompanyCreated
+      abis:
+        - name: CompanyFactory
+          file: ./abis/CompanyFactory.json
+      eventHandlers:
+        - event: newCompanyCreated(indexed address,indexed address,indexed string,address,string,string)
+          handler: handlenewCompanyCreated
+      file: ./src/mapping.ts
